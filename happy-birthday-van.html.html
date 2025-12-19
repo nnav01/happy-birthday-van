@@ -9,7 +9,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffcad4, #cdb4db);
+  background: linear-gradient(135deg, #ffe5ec, #d0bdf4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,14 +37,14 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  background: linear-gradient(135deg, #ff4d6d, #ff8fab);
   clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
 }
 
 .flap {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  background: linear-gradient(135deg, #ff4d6d, #ff8fab);
   clip-path: polygon(0 0, 50% 60%, 100% 0);
   transform-origin: top;
   transition: transform 1s ease;
@@ -56,7 +56,7 @@ body {
 
 .open-btn {
   margin-top: 22px;
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 30px;
   border: none;
   background: #ff4d6d;
@@ -70,12 +70,12 @@ body {
 .card {
   position: absolute;
   background: white;
-  padding: 34px 28px;
-  border-radius: 26px;
+  padding: 36px 30px;
+  border-radius: 28px;
   text-align: center;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-  max-width: 420px;
-  width: 90%;
+  box-shadow: 0 35px 70px rgba(0,0,0,0.3);
+  max-width: 440px;
+  width: 92%;
   opacity: 0;
   transform: scale(0.6);
   transition: all 1s ease;
@@ -89,10 +89,10 @@ body {
 
 /* Name */
 .name {
-  font-size: 44px;
+  font-size: 46px;
   font-weight: 700;
   color: #ff4d6d;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   opacity: 0;
   transform: translateY(20px) scale(0.8);
   transition: all 0.9s ease;
@@ -109,32 +109,34 @@ body {
   font-size: 14px;
   color: #999;
   letter-spacing: 2px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
-/* Text */
+/* BIG HAPPY BIRTHDAY */
 .subtitle {
-  font-size: 15px;
-  letter-spacing: 2px;
-  color: #888;
+  font-size: 26px;        /* TO HƠN */
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #ff4d6d;
+  margin-bottom: 14px;
 }
 
 h1 {
   font-size: 26px;
-  color: #ff4d6d;
-  margin: 10px 0 14px;
+  color: #ff758f;
+  margin: 10px 0 16px;
 }
 
 p {
   font-size: 16px;
   color: #444;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 /* Heart */
 .heart {
   margin-top: 14px;
-  font-size: 38px;
+  font-size: 40px;
   animation: beat 1.2s infinite;
 }
 
@@ -142,18 +144,38 @@ p {
   50% { transform: scale(1.25); }
 }
 
-/* ================= CONFETTI ================= */
-.confetti {
+/* ================= FLORAL CONFETTI ================= */
+.flower {
   position: absolute;
-  top: -20px;
-  width: 8px;
-  height: 8px;
-  border-radius: 2px;
+  top: -30px;
+  font-size: 22px;
   animation: fall linear infinite;
+  opacity: 0.9;
 }
 
 @keyframes fall {
   to { transform: translateY(120vh) rotate(360deg); }
+}
+
+/* ================= CANDLES ================= */
+.candles {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26px;
+  opacity: 0.9;
+}
+
+.candle {
+  display: inline-block;
+  margin: 0 6px;
+  animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(1.1); }
 }
 </style>
 </head>
@@ -165,25 +187,34 @@ p {
   <div class="envelope" id="envelope">
     <div class="flap"></div>
   </div>
-  <button class="open-btn" onclick="openLetter()">💌 Mở thư</button>
+  <button class="open-btn" onclick="openLetter()">💌 Em ơi. Mở ở đây nhớ</button>
 </div>
 
 <!-- CARD -->
 <div class="card" id="card">
-  <div class="name" id="name">Vân ✨</div>
+  <div class="name" id="name">Vân 💖☁️</div>
   <div class="date">20 • 12</div>
-  <div class="subtitle">HAPPY BIRTHDAY</div>
+
+  <div class="subtitle">HAPPY&nbsp;BIRTHDAY</div>
 
   <h1>Chúc mừng sinh nhật em 💐</h1>
 
   <p>
-    Chúc em luôn bình an, xinh đẹp<br>
-    và vững vàng trên con đường mình chọn.<br>
-    Mong những điều dịu dàng nhất<br>
-    sẽ luôn ở bên em 💖
+    Chúc em luôn luôn xing đẹp nhớ<br>
+    Chúc những điều em ước sẽ thành hiện thực.<br>
+    Mong mỗi năm trôi qua,<br>
+    em đều được yêu thương nhiều hơn 💖
   </p>
+Luôn giữ nụ cười trên môi cô banker nhé ☺️💟</p>
 
   <div class="heart">💖</div>
+
+  <!-- Candles -->
+  <div class="candles">
+    <span class="candle">🕯️</span>
+    <span class="candle">🕯️</span>
+    <span class="candle">🕯️</span>
+  </div>
 </div>
 
 <script>
@@ -198,19 +229,19 @@ function openLetter() {
       document.getElementById("name").classList.add("show");
     }, 300);
 
-    launchConfetti();
+    launchFlowers();
   }, 1400);
 }
 
-function launchConfetti() {
-  const colors = ["#ff4d6d","#ffd166","#06d6a0","#4dabf7","#c77dff"];
-  for (let i = 0; i < 90; i++) {
-    const c = document.createElement("div");
-    c.className = "confetti";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.background = colors[Math.floor(Math.random() * colors.length)];
-    c.style.animationDuration = 3 + Math.random() * 3 + "s";
-    document.body.appendChild(c);
+function launchFlowers() {
+  const flowers = ["🌸","🌷","🌹","💐","🌺"];
+  for (let i = 0; i < 60; i++) {
+    const f = document.createElement("div");
+    f.className = "flower";
+    f.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+    f.style.left = Math.random() * 100 + "vw";
+    f.style.animationDuration = 6 + Math.random() * 4 + "s";
+    document.body.appendChild(f);
   }
 }
 </script>
