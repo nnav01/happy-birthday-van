@@ -9,7 +9,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffb3c6, #cdb4db);
+  background: linear-gradient(135deg, #ffcad4, #cdb4db);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,19 +17,19 @@ body {
   overflow: hidden;
 }
 
-/* Envelope */
+/* ================= ENVELOPE ================= */
 .envelope-wrapper {
   text-align: center;
-  z-index: 5;
+  z-index: 10;
 }
 
 .envelope {
   position: relative;
-  width: 280px;
-  height: 180px;
+  width: 300px;
+  height: 190px;
   background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  border-radius: 16px;
+  box-shadow: 0 25px 45px rgba(0,0,0,0.25);
   overflow: hidden;
 }
 
@@ -37,14 +37,14 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: #ff4d6d;
-  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
 }
 
 .flap {
   position: absolute;
   inset: 0;
-  background: #ff4d6d;
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
   clip-path: polygon(0 0, 50% 60%, 100% 0);
   transform-origin: top;
   transition: transform 1s ease;
@@ -55,30 +55,31 @@ body {
 }
 
 .open-btn {
-  margin-top: 20px;
-  padding: 12px 24px;
+  margin-top: 22px;
+  padding: 12px 26px;
   border-radius: 30px;
   border: none;
   background: #ff4d6d;
   color: white;
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
 }
 
-/* Card */
+/* ================= CARD ================= */
 .card {
   position: absolute;
   background: white;
-  padding: 30px 25px;
-  border-radius: 22px;
+  padding: 34px 28px;
+  border-radius: 26px;
   text-align: center;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
   max-width: 420px;
   width: 90%;
   opacity: 0;
   transform: scale(0.6);
   transition: all 1s ease;
+  z-index: 5;
 }
 
 .card.show {
@@ -86,43 +87,68 @@ body {
   transform: scale(1);
 }
 
+/* Name */
 .name {
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 700;
   color: #ff4d6d;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.8s ease;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.9s ease;
   font-family: "Segoe Script", cursive;
 }
 
 .name.show {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(0) scale(1);
+}
+
+/* Date */
+.date {
+  font-size: 14px;
+  color: #999;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.subtitle {
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+h1 {
+  font-size: 26px;
+  color: #ff4d6d;
+  margin: 10px 0 14px;
 }
 
 p {
   font-size: 16px;
   color: #444;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
+/* Heart */
 .heart {
+  margin-top: 14px;
   font-size: 38px;
-  animation: beat 1s infinite;
+  animation: beat 1.2s infinite;
 }
 
 @keyframes beat {
-  50% { transform: scale(1.2); }
+  50% { transform: scale(1.25); }
 }
 
-/* Confetti */
+/* ================= CONFETTI ================= */
 .confetti {
   position: absolute;
   top: -20px;
   width: 8px;
   height: 8px;
+  border-radius: 2px;
   animation: fall linear infinite;
 }
 
@@ -134,7 +160,7 @@ p {
 
 <body>
 
-<!-- Envelope -->
+<!-- ENVELOPE -->
 <div class="envelope-wrapper" id="envWrap">
   <div class="envelope" id="envelope">
     <div class="flap"></div>
@@ -142,30 +168,26 @@ p {
   <button class="open-btn" onclick="openLetter()">💌 Mở thư</button>
 </div>
 
-<!-- Card -->
+<!-- CARD -->
 <div class="card" id="card">
   <div class="name" id="name">Vân ✨</div>
+  <div class="date">20 • 12</div>
+  <div class="subtitle">HAPPY BIRTHDAY</div>
+
+  <h1>Chúc mừng sinh nhật em 💐</h1>
 
   <p>
-    Chúc mừng sinh nhật Vân 💐<br>
-    Mong em luôn bình an, xinh đẹp<br>
-    và vững vàng trên con đường mình chọn 💖
+    Chúc em luôn bình an, xinh đẹp<br>
+    và vững vàng trên con đường mình chọn.<br>
+    Mong những điều dịu dàng nhất<br>
+    sẽ luôn ở bên em 💖
   </p>
 
   <div class="heart">💖</div>
 </div>
 
-<!-- MUSIC (ĐÂY LÀ PHẦN NHẠC) -->
-<audio id="bgm" preload="auto" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4f5b6f9d8a.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 function openLetter() {
-  // hành động người dùng → cho phép bật nhạc
-  const music = document.getElementById("bgm");
-  music.play().catch(()=>{});
-
   document.getElementById("envelope").classList.add("open");
 
   setTimeout(() => {
@@ -177,12 +199,12 @@ function openLetter() {
     }, 300);
 
     launchConfetti();
-  }, 1200);
+  }, 1400);
 }
 
 function launchConfetti() {
   const colors = ["#ff4d6d","#ffd166","#06d6a0","#4dabf7","#c77dff"];
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 90; i++) {
     const c = document.createElement("div");
     c.className = "confetti";
     c.style.left = Math.random() * 100 + "vw";
