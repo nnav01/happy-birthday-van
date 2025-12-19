@@ -17,7 +17,7 @@ body {
   overflow: hidden;
 }
 
-/* ===== ENVELOPE ===== */
+/* Envelope */
 .envelope-wrapper {
   text-align: center;
   z-index: 5;
@@ -48,7 +48,6 @@ body {
   clip-path: polygon(0 0, 50% 60%, 100% 0);
   transform-origin: top;
   transition: transform 1s ease;
-  z-index: 4;
 }
 
 .envelope.open .flap {
@@ -67,7 +66,7 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* ===== CARD ===== */
+/* Card */
 .card {
   position: absolute;
   background: white;
@@ -80,7 +79,6 @@ body {
   opacity: 0;
   transform: scale(0.6);
   transition: all 1s ease;
-  z-index: 3;
 }
 
 .card.show {
@@ -104,30 +102,10 @@ body {
   transform: scale(1);
 }
 
-h2 {
-  font-size: 16px;
-  letter-spacing: 2px;
-  color: #6c757d;
-  margin: 0;
-}
-
-h1 {
-  font-size: 26px;
-  color: #ff4d6d;
-  margin: 10px 0;
-}
-
 p {
   font-size: 16px;
   color: #444;
   line-height: 1.6;
-}
-
-.bank {
-  margin-top: 12px;
-  font-size: 16px;
-  color: #5f3dc4;
-  font-weight: 600;
 }
 
 .heart {
@@ -139,18 +117,7 @@ p {
   50% { transform: scale(1.2); }
 }
 
-.music-btn {
-  margin-top: 15px;
-  padding: 12px 20px;
-  border-radius: 30px;
-  border: none;
-  background: #ff4d6d;
-  color: white;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-/* ===== CONFETTI ===== */
+/* Confetti */
 .confetti {
   position: absolute;
   top: -20px;
@@ -167,7 +134,7 @@ p {
 
 <body>
 
-<!-- ENVELOPE -->
+<!-- Envelope -->
 <div class="envelope-wrapper" id="envWrap">
   <div class="envelope" id="envelope">
     <div class="flap"></div>
@@ -175,32 +142,30 @@ p {
   <button class="open-btn" onclick="openLetter()">💌 Mở thư</button>
 </div>
 
-<!-- CARD -->
+<!-- Card -->
 <div class="card" id="card">
   <div class="name" id="name">Vân ✨</div>
 
-  <h2>🎉 HAPPY BIRTHDAY 🎉</h2>
-  <h1>Chúc mừng sinh nhật em 💐</h1>
-
   <p>
-    Chúc em luôn xinh đẹp và bình an.<br>
-    Công việc ngân hàng vững vàng như những con số chuẩn xác,<br>
-    tài khoản thì tăng đều 📈 và nụ cười luôn rạng rỡ 💖
+    Chúc mừng sinh nhật Vân 💐<br>
+    Mong em luôn bình an, xinh đẹp<br>
+    và vững vàng trên con đường mình chọn 💖
   </p>
 
-  <div class="bank">🏦 Vững nghiệp – 💳 Dư dả – 💰 Đủ đầy</div>
   <div class="heart">💖</div>
-
-  <button class="music-btn" onclick="playMusic()">🎵 Bật nhạc</button>
 </div>
 
-<!-- MUSIC -->
-<audio id="bgm" loop>
+<!-- MUSIC (ĐÂY LÀ PHẦN NHẠC) -->
+<audio id="bgm" preload="auto" loop>
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4f5b6f9d8a.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function openLetter() {
+  // hành động người dùng → cho phép bật nhạc
+  const music = document.getElementById("bgm");
+  music.play().catch(()=>{});
+
   document.getElementById("envelope").classList.add("open");
 
   setTimeout(() => {
@@ -212,11 +177,7 @@ function openLetter() {
     }, 300);
 
     launchConfetti();
-  }, 1500);
-}
-
-function playMusic() {
-  document.getElementById("bgm").play();
+  }, 1200);
 }
 
 function launchConfetti() {
