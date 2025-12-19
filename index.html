@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Vân 💖</title>
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffb3c6, #cdb4db);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+/* ===== ENVELOPE ===== */
+.envelope-wrapper {
+  text-align: center;
+  z-index: 5;
+}
+
+.envelope {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ff4d6d;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+}
+
+.flap {
+  position: absolute;
+  inset: 0;
+  background: #ff4d6d;
+  clip-path: polygon(0 0, 50% 60%, 100% 0);
+  transform-origin: top;
+  transition: transform 1s ease;
+  z-index: 4;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+.open-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* ===== CARD ===== */
+.card {
+  position: absolute;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+  max-width: 420px;
+  width: 90%;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 1s ease;
+  z-index: 3;
+}
+
+.card.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.name {
+  font-size: 42px;
+  font-weight: 700;
+  color: #ff4d6d;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.8s ease;
+  font-family: "Segoe Script", cursive;
+}
+
+.name.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+h2 {
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #6c757d;
+  margin: 0;
+}
+
+h1 {
+  font-size: 26px;
+  color: #ff4d6d;
+  margin: 10px 0;
+}
+
+p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.bank {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #5f3dc4;
+  font-weight: 600;
+}
+
+.heart {
+  font-size: 38px;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.2); }
+}
+
+.music-btn {
+  margin-top: 15px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* ===== CONFETTI ===== */
+.confetti {
+  position: absolute;
+  top: -20px;
+  width: 8px;
+  height: 8px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(120vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ENVELOPE -->
+<div class="envelope-wrapper" id="envWrap">
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+  </div>
+  <button class="open-btn" onclick="openLetter()">💌 Mở thư</button>
+</div>
+
+<!-- CARD -->
+<div class="card" id="card">
+  <div class="name" id="name">Vân ✨</div>
+
+  <h2>🎉 HAPPY BIRTHDAY 🎉</h2>
+  <h1>Chúc mừng sinh nhật em 💐</h1>
+
+  <p>
+    Chúc em luôn xinh đẹp và bình an.<br>
+    Công việc ngân hàng vững vàng như những con số chuẩn xác,<br>
+    tài khoản thì tăng đều 📈 và nụ cười luôn rạng rỡ 💖
+  </p>
+
+  <div class="bank">🏦 Vững nghiệp – 💳 Dư dả – 💰 Đủ đầy</div>
+  <div class="heart">💖</div>
+
+  <button class="music-btn" onclick="playMusic()">🎵 Bật nhạc</button>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4f5b6f9d8a.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function openLetter() {
+  document.getElementById("envelope").classList.add("open");
+
+  setTimeout(() => {
+    document.getElementById("envWrap").style.display = "none";
+    document.getElementById("card").classList.add("show");
+
+    setTimeout(() => {
+      document.getElementById("name").classList.add("show");
+    }, 300);
+
+    launchConfetti();
+  }, 1500);
+}
+
+function playMusic() {
+  document.getElementById("bgm").play();
+}
+
+function launchConfetti() {
+  const colors = ["#ff4d6d","#ffd166","#06d6a0","#4dabf7","#c77dff"];
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDuration = 3 + Math.random() * 3 + "s";
+    document.body.appendChild(c);
+  }
+}
+</script>
+
+</body>
+</html>
